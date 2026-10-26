@@ -1,0 +1,541 @@
+<title>Tech Learning</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700&family=DM+Sans:wght@300;400;500;600&display=swap">
+
+<style>
+  /* layout: two-column card grid under category sections */
+  :root {
+    --bg:       #0e1117;
+    --bg-card:  #161b25;
+    --bg-muted: #1c2333;
+    --border:   #2a3347;
+    --fg:       #cdd5e0;
+    --fg-muted: #6b7c96;
+    --fg-dim:   #3d4f68;
+    --accent:   #4ade80;
+    --accent-2: #22d3ee;
+    --tag-bg:   rgba(74,222,128,.1);
+    --tag-fg:   #4ade80;
+  }
+  @media (prefers-color-scheme: light) {
+    :root:not([data-theme="dark"]) {
+      --bg:       #f4f6fb;
+      --bg-card:  #ffffff;
+      --bg-muted: #eaeff8;
+      --border:   #d0daea;
+      --fg:       #1a2235;
+      --fg-muted: #5a6e8c;
+      --fg-dim:   #b0bfce;
+      --accent:   #16a34a;
+      --accent-2: #0891b2;
+      --tag-bg:   rgba(22,163,74,.1);
+      --tag-fg:   #16a34a;
+      color-scheme: light;
+    }
+  }
+  :root[data-theme="light"] {
+    --bg:       #f4f6fb;
+    --bg-card:  #ffffff;
+    --bg-muted: #eaeff8;
+    --border:   #d0daea;
+    --fg:       #1a2235;
+    --fg-muted: #5a6e8c;
+    --fg-dim:   #b0bfce;
+    --accent:   #16a34a;
+    --accent-2: #0891b2;
+    --tag-bg:   rgba(22,163,74,.1);
+    --tag-fg:   #16a34a;
+    color-scheme: light;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; }
+
+  body {
+    background: var(--bg);
+    color: var(--fg);
+    font-family: 'DM Sans', system-ui, sans-serif;
+    font-size: 15px;
+    line-height: 1.6;
+    margin: 0;
+    padding-block: 0;
+    padding-left: max(16px, env(safe-area-inset-left, 0px));
+    padding-right: max(16px, env(safe-area-inset-right, 0px));
+  }
+
+  /* ─── Nav ─── */
+  .nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-block: 18px;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 40px;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+  .nav-logo {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--accent);
+    letter-spacing: .04em;
+    text-decoration: none;
+  }
+  .nav-logo span { color: var(--fg-muted); font-weight: 400; }
+  .theme-btn {
+    background: var(--bg-muted);
+    border: 1px solid var(--border);
+    color: var(--fg-muted);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    padding: 5px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: border-color .15s, color .15s;
+  }
+  .theme-btn:hover { border-color: var(--accent); color: var(--fg); }
+
+  /* ─── Hero ─── */
+  .hero {
+    margin-bottom: 56px;
+  }
+  .hero-eyebrow {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 12px;
+  }
+  .hero h1 {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: clamp(28px, 6vw, 48px);
+    font-weight: 700;
+    line-height: 1.15;
+    color: var(--fg);
+    margin: 0 0 16px;
+    text-wrap: balance;
+  }
+  .hero h1 em {
+    font-style: normal;
+    color: var(--accent);
+  }
+  .hero-sub {
+    color: var(--fg-muted);
+    font-size: 16px;
+    max-width: 520px;
+    font-weight: 300;
+  }
+
+  /* ─── Search ─── */
+  .search-wrap {
+    margin-bottom: 48px;
+    position: relative;
+    max-width: 460px;
+  }
+  .search-wrap svg {
+    position: absolute;
+    left: 14px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--fg-dim);
+    pointer-events: none;
+  }
+  .search-input {
+    width: 100%;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    color: var(--fg);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px;
+    padding: 10px 14px 10px 40px;
+    border-radius: 6px;
+    outline: none;
+    transition: border-color .15s;
+  }
+  .search-input::placeholder { color: var(--fg-dim); }
+  .search-input:focus { border-color: var(--accent); }
+
+  /* ─── Section ─── */
+  .section { margin-bottom: 52px; }
+  .section-head {
+    display: flex;
+    align-items: baseline;
+    gap: 10px;
+    margin-bottom: 20px;
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 10px;
+  }
+  .section-head h2 {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+    color: var(--fg);
+    margin: 0;
+  }
+  .section-head .count {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: var(--fg-dim);
+  }
+
+  /* ─── Cards ─── */
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 14px;
+  }
+  .card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 18px 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    text-decoration: none;
+    color: inherit;
+    transition: border-color .15s, transform .12s;
+    position: relative;
+    overflow: hidden;
+  }
+  .card::before {
+    content: '';
+    position: absolute;
+    inset: 0 auto 0 0;
+    width: 2px;
+    background: var(--accent);
+    opacity: 0;
+    transition: opacity .15s;
+  }
+  .card:hover { border-color: var(--border); transform: translateY(-1px); }
+  .card:hover::before { opacity: 1; }
+  .card-title {
+    font-weight: 600;
+    font-size: 14px;
+    color: var(--fg);
+  }
+  .card-desc {
+    font-size: 13px;
+    color: var(--fg-muted);
+    font-weight: 300;
+    line-height: 1.5;
+    min-width: 0;
+  }
+  .card-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 4px;
+  }
+  .tag {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: .06em;
+    text-transform: uppercase;
+    background: var(--tag-bg);
+    color: var(--tag-fg);
+    padding: 2px 7px;
+    border-radius: 3px;
+  }
+  .tag.lang { background: rgba(34,211,238,.1); color: var(--accent-2); }
+  .tag.tool { background: rgba(168,85,247,.1); color: #c084fc; }
+  .tag.concept { background: rgba(251,146,60,.1); color: #fb923c; }
+  .arrow {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    color: var(--fg-dim);
+    transition: color .15s, transform .15s;
+  }
+  .card:hover .arrow { color: var(--accent); transform: translateX(3px); }
+
+  /* ─── Pinned ─── */
+  .pinned {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 14px;
+    margin-bottom: 52px;
+  }
+  .card-pin {
+    background: linear-gradient(135deg, var(--bg-card) 0%, var(--bg-muted) 100%);
+    border: 1px solid var(--border);
+    border-top: 2px solid var(--accent);
+    border-radius: 8px;
+    padding: 20px 22px;
+    text-decoration: none;
+    color: inherit;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    transition: transform .12s;
+  }
+  .card-pin:hover { transform: translateY(-2px); }
+  .pin-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    color: var(--accent);
+  }
+  .card-pin .card-title { font-size: 15px; }
+
+  /* ─── No-results ─── */
+  .no-results {
+    display: none;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px;
+    color: var(--fg-dim);
+    padding: 32px 0;
+  }
+
+  /* ─── Footer ─── */
+  footer {
+    border-top: 1px solid var(--border);
+    padding-block: 28px;
+    margin-top: 12px;
+    font-size: 12px;
+    color: var(--fg-dim);
+    font-family: 'JetBrains Mono', monospace;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+</style>
+
+<nav class="nav">
+  <a class="nav-logo" href="#">lamceol<span>/</span>tech-notes</a>
+  <button class="theme-btn" onclick="toggleTheme()">toggle theme</button>
+</nav>
+
+<main>
+  <div class="hero">
+    <p class="hero-eyebrow">// learning hub</p>
+    <h1>Resources that<br><em>actually help.</em></h1>
+    <p class="hero-sub">A curated collection of docs, tools, and references — skewed toward testing and automation.</p>
+  </div>
+
+  <div class="search-wrap">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+    <input class="search-input" id="search" type="search" placeholder="Filter resources…" autocomplete="off" spellcheck="false">
+  </div>
+
+  <div class="section">
+    <div class="section-head"><h2>Pinned</h2><span class="count">// always relevant</span></div>
+    <div class="pinned" id="pinned">
+      <a class="card-pin" href="https://playwright.dev/docs/intro" target="_blank" rel="noopener" data-search="playwright testing automation">
+        <span class="pin-label">★ pinned</span>
+        <span class="card-title">Playwright Docs</span>
+        <span class="card-desc">End-to-end testing for the web. The best-maintained browser automation API right now.</span>
+      </a>
+      <a class="card-pin" href="https://docs.python.org/3/" target="_blank" rel="noopener" data-search="python docs language">
+        <span class="pin-label">★ pinned</span>
+        <span class="card-title">Python 3 Docs</span>
+        <span class="card-desc">The full standard library reference. Faster than searching — know where to look.</span>
+      </a>
+      <a class="card-pin" href="https://www.typescriptlang.org/docs/" target="_blank" rel="noopener" data-search="typescript docs language">
+        <span class="pin-label">★ pinned</span>
+        <span class="card-title">TypeScript Handbook</span>
+        <span class="card-desc">Start with Everyday Types, then reach for the Handbook chapters as needed.</span>
+      </a>
+    </div>
+  </div>
+
+  <div class="section" id="section-testing">
+    <div class="section-head"><h2>Testing & QA</h2><span class="count" id="count-testing"></span></div>
+    <div class="grid" id="grid-testing">
+      <a class="card" href="https://playwright.dev" target="_blank" rel="noopener" data-search="playwright browser automation testing">
+        <span class="card-title">Playwright</span>
+        <span class="card-desc">Cross-browser automation by Microsoft. First-class Python and TS APIs.</span>
+        <div class="card-footer"><span class="tag">automation</span><span class="arrow">→</span></div>
+      </a>
+      <a class="card" href="https://pytest.org" target="_blank" rel="noopener" data-search="pytest python testing framework">
+        <span class="card-title">pytest</span>
+        <span class="card-desc">Python's de-facto test framework. Rich plugin ecosystem, clean fixtures model.</span>
+        <div class="card-footer"><span class="tag">testing</span><span class="arrow">→</span></div>
+      </a>
+      <a class="card" href="https://jestjs.io/docs/getting-started" target="_blank" rel="noopener" data-search="jest javascript testing unit">
+        <span class="card-title">Jest</span>
+        <span class="card-desc">Zero-config JS testing. Snapshot testing, mocking, and code coverage built in.</span>
+        <div class="card-footer"><span class="tag">testing</span><span class="arrow">→</span></div>
+      </a>
+      <a class="card" href="https://vitest.dev" target="_blank" rel="noopener" data-search="vitest vite javascript testing unit fast">
+        <span class="card-title">Vitest</span>
+        <span class="card-desc">Vite-native unit testing. Jest-compatible API, much faster cold starts.</span>
+        <div class="card-footer"><span class="tag">testing</span><span class="arrow">→</span></div>
+      </a>
+      <a class="card" href="https://docs.pytest.org/en/stable/how-to/fixtures.html" target="_blank" rel="noopener" data-search="pytest fixtures dependency injection testing">
+        <span class="card-title">pytest Fixtures</span>
+        <span class="card-desc">The fixture model is pytest's superpower. Scope, teardown, parametrize patterns.</span>
+        <div class="card-footer"><span class="tag">concept</span><span class="arrow">→</span></div>
+      </a>
+      <a class="card" href="https://testing.googleblog.com" target="_blank" rel="noopener" data-search="google testing blog engineering quality">
+        <span class="card-title">Google Testing Blog</span>
+        <span class="card-desc">Long-running engineering blog on testing philosophy, flaky tests, CI, and test design.</span>
+        <div class="card-footer"><span class="tag">concept</span><span class="arrow">→</span></div>
+      </a>
+    </div>
+  </div>
+
+  <div class="section" id="section-languages">
+    <div class="section-head"><h2>Languages</h2><span class="count" id="count-languages"></span></div>
+    <div class="grid" id="grid-languages">
+      <a class="card" href="https://docs.python.org/3/" target="_blank" rel="noopener" data-search="python docs reference standard library">
+        <span class="card-title">Python Docs</span>
+        <span class="card-desc">Standard library reference. Bookmark the Built-in Functions and itertools pages.</span>
+        <div class="card-footer"><span class="tag lang">python</span><span class="arrow">→</span></div>
+      </a>
+      <a class="card" href="https://www.typescriptlang.org/docs/handbook/2/types-from-types.html" target="_blank" rel="noopener" data-search="typescript advanced types generics utility">
+        <span class="card-title">TS — Types from Types</span>
+        <span class="card-desc">Mapped types, conditionals, infer — the patterns that make complex type-level code readable.</span>
+        <div class="card-footer"><span class="tag lang">typescript</span><span class="arrow">→</span></div>
+      </a>
+      <a class="card" href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference" target="_blank" rel="noopener" data-search="javascript mdn reference web apis">
+        <span class="card-title">MDN JS Reference</span>
+        <span class="card-desc">Authoritative JS spec reference plus browser API coverage. Bookmark this over W3Schools.</span>
+        <div class="card-footer"><span class="tag lang">javascript</span><span class="arrow">→</span></div>
+      </a>
+      <a class="card" href="https://dev.java/learn/" target="_blank" rel="noopener" data-search="java learn docs official">
+        <span class="card-title">dev.java</span>
+        <span class="card-desc">Oracle's modern Java learning hub. Better organized than the legacy Javadoc sites.</span>
+        <div class="card-footer"><span class="tag lang">java</span><span class="arrow">→</span></div>
+      </a>
+      <a class="card" href="https://realpython.com" target="_blank" rel="noopener" data-search="python tutorials real practical">
+        <span class="card-title">Real Python</span>
+        <span class="card-desc">Deep practical tutorials. Especially good for testing, async, and data tooling.</span>
+        <div class="card-footer"><span class="tag lang">python</span><span class="arrow">→</span></div>
+      </a>
+    </div>
+  </div>
+
+  <div class="section" id="section-devtools">
+    <div class="section-head"><h2>Tools & DevOps</h2><span class="count" id="count-devtools"></span></div>
+    <div class="grid" id="grid-devtools">
+      <a class="card" href="https://git-scm.com/docs" target="_blank" rel="noopener" data-search="git version control docs reference">
+        <span class="card-title">Git Reference</span>
+        <span class="card-desc">Official command reference. Every option, every flag. Faster than Stack Overflow for git edge cases.</span>
+        <div class="card-footer"><span class="tag tool">tool</span><span class="arrow">→</span></div>
+      </a>
+      <a class="card" href="https://docs.docker.com/get-started/" target="_blank" rel="noopener" data-search="docker containers devops images">
+        <span class="card-title">Docker Docs</span>
+        <span class="card-desc">Get Started covers most real workflows. Compose reference is the most-visited page.</span>
+        <div class="card-footer"><span class="tag tool">tool</span><span class="arrow">→</span></div>
+      </a>
+      <a class="card" href="https://docs.github.com/en/actions" target="_blank" rel="noopener" data-search="github actions ci cd workflow automation">
+        <span class="card-title">GitHub Actions</span>
+        <span class="card-desc">CI/CD that lives in the repo. Workflow syntax, matrix builds, reusable workflows.</span>
+        <div class="card-footer"><span class="tag tool">tool</span><span class="arrow">→</span></div>
+      </a>
+      <a class="card" href="https://jqlang.github.io/jq/manual/" target="_blank" rel="noopener" data-search="jq json cli parsing tool">
+        <span class="card-title">jq Manual</span>
+        <span class="card-desc">Command-line JSON processor. Indispensable for API responses and log parsing in shell scripts.</span>
+        <div class="card-footer"><span class="tag tool">tool</span><span class="arrow">→</span></div>
+      </a>
+      <a class="card" href="https://explainshell.com" target="_blank" rel="noopener" data-search="shell bash explain command flags linux">
+        <span class="card-title">explainshell</span>
+        <span class="card-desc">Paste any shell command and get each flag annotated from the man page. Great for decoding scripts.</span>
+        <div class="card-footer"><span class="tag tool">tool</span><span class="arrow">→</span></div>
+      </a>
+      <a class="card" href="https://www.postman.com/api-platform/api-testing/" target="_blank" rel="noopener" data-search="postman api testing rest http">
+        <span class="card-title">Postman API Testing</span>
+        <span class="card-desc">Collections, environments, and test scripting. Newman for headless CI runs.</span>
+        <div class="card-footer"><span class="tag tool">tool</span><span class="arrow">→</span></div>
+      </a>
+    </div>
+  </div>
+
+  <div class="section" id="section-concepts">
+    <div class="section-head"><h2>Concepts</h2><span class="count" id="count-concepts"></span></div>
+    <div class="grid" id="grid-concepts">
+      <a class="card" href="https://martinfowler.com/articles/practical-test-pyramid.html" target="_blank" rel="noopener" data-search="test pyramid strategy unit integration e2e">
+        <span class="card-title">Practical Test Pyramid</span>
+        <span class="card-desc">Fowler's breakdown of unit/integration/E2E trade-offs. The article that frames every testing conversation.</span>
+        <div class="card-footer"><span class="tag concept">concept</span><span class="arrow">→</span></div>
+      </a>
+      <a class="card" href="https://12factor.net" target="_blank" rel="noopener" data-search="twelve factor app methodology config deployment">
+        <span class="card-title">The Twelve-Factor App</span>
+        <span class="card-desc">Methodology for building deployable, testable services. Good mental model for why certain antipatterns exist.</span>
+        <div class="card-footer"><span class="tag concept">concept</span><span class="arrow">→</span></div>
+      </a>
+      <a class="card" href="https://owasp.org/www-project-top-ten/" target="_blank" rel="noopener" data-search="owasp security top ten web vulnerabilities">
+        <span class="card-title">OWASP Top 10</span>
+        <span class="card-desc">The canonical list of critical web security risks. Useful context for security test case thinking.</span>
+        <div class="card-footer"><span class="tag concept">concept</span><span class="arrow">→</span></div>
+      </a>
+      <a class="card" href="https://semver.org" target="_blank" rel="noopener" data-search="semver semantic versioning releases">
+        <span class="card-title">Semantic Versioning</span>
+        <span class="card-desc">The spec behind MAJOR.MINOR.PATCH. Useful for understanding dependency risk when reviewing changelogs.</span>
+        <div class="card-footer"><span class="tag concept">concept</span><span class="arrow">→</span></div>
+      </a>
+    </div>
+  </div>
+
+  <p class="no-results" id="no-results">// no matches</p>
+</main>
+
+<footer>
+  <span>lamceol / tech-learning</span>
+  <span id="footer-count"></span>
+</footer>
+
+<script>
+  // ─── Theme toggle ───
+  function toggleTheme() {
+    const root = document.documentElement;
+    const current = root.getAttribute('data-theme');
+    if (!current) {
+      const isDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+      root.setAttribute('data-theme', isDark ? 'light' : 'dark');
+    } else {
+      root.setAttribute('data-theme', current === 'dark' ? 'light' : 'dark');
+    }
+    try { localStorage.setItem('theme', root.getAttribute('data-theme')); } catch {}
+  }
+  try {
+    const saved = localStorage.getItem('theme');
+    if (saved) document.documentElement.setAttribute('data-theme', saved);
+  } catch {}
+
+  // ─── Counts ───
+  const sections = ['testing', 'languages', 'devtools', 'concepts'];
+  sections.forEach(id => {
+    const grid = document.getElementById('grid-' + id);
+    if (grid) {
+      const n = grid.querySelectorAll('.card').length;
+      const el = document.getElementById('count-' + id);
+      if (el) el.textContent = '// ' + n;
+    }
+  });
+
+  // total
+  const total = document.querySelectorAll('.card, .card-pin').length;
+  const fc = document.getElementById('footer-count');
+  if (fc) fc.textContent = total + ' resources';
+
+  // ─── Search ───
+  const searchInput = document.getElementById('search');
+  const noResults = document.getElementById('no-results');
+
+  searchInput.addEventListener('input', () => {
+    const q = searchInput.value.trim().toLowerCase();
+
+    document.querySelectorAll('.card, .card-pin').forEach(card => {
+      const text = (card.dataset.search || '') + ' ' + card.textContent;
+      card.style.display = !q || text.toLowerCase().includes(q) ? '' : 'none';
+    });
+
+    let anyVisible = false;
+    document.querySelectorAll('.section, #pinned').forEach(section => {
+      const cards = section.querySelectorAll('.card, .card-pin');
+      const visible = [...cards].some(c => c.style.display !== 'none');
+      section.style.display = q && !visible ? 'none' : '';
+      if (visible || !q) anyVisible = true;
+    });
+
+    noResults.style.display = (!anyVisible && q) ? 'block' : 'none';
+  });
+</script>
