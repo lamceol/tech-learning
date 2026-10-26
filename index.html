@@ -62,7 +62,6 @@
     padding-right: max(16px, env(safe-area-inset-right, 0px));
   }
 
-  /* ─── Nav ─── */
   .nav {
     display: flex;
     align-items: center;
@@ -95,10 +94,7 @@
   }
   .theme-btn:hover { border-color: var(--accent); color: var(--fg); }
 
-  /* ─── Hero ─── */
-  .hero {
-    margin-bottom: 56px;
-  }
+  .hero { margin-bottom: 56px; }
   .hero-eyebrow {
     font-family: 'JetBrains Mono', monospace;
     font-size: 12px;
@@ -116,10 +112,7 @@
     margin: 0 0 16px;
     text-wrap: balance;
   }
-  .hero h1 em {
-    font-style: normal;
-    color: var(--accent);
-  }
+  .hero h1 em { font-style: normal; color: var(--accent); }
   .hero-sub {
     color: var(--fg-muted);
     font-size: 16px;
@@ -127,7 +120,6 @@
     font-weight: 300;
   }
 
-  /* ─── Search ─── */
   .search-wrap {
     margin-bottom: 48px;
     position: relative;
@@ -156,7 +148,6 @@
   .search-input::placeholder { color: var(--fg-dim); }
   .search-input:focus { border-color: var(--accent); }
 
-  /* ─── Section ─── */
   .section { margin-bottom: 52px; }
   .section-head {
     display: flex;
@@ -181,7 +172,6 @@
     color: var(--fg-dim);
   }
 
-  /* ─── Cards ─── */
   .grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
@@ -210,13 +200,9 @@
     opacity: 0;
     transition: opacity .15s;
   }
-  .card:hover { border-color: var(--border); transform: translateY(-1px); }
+  .card:hover { transform: translateY(-1px); }
   .card:hover::before { opacity: 1; }
-  .card-title {
-    font-weight: 600;
-    font-size: 14px;
-    color: var(--fg);
-  }
+  .card-title { font-weight: 600; font-size: 14px; color: var(--fg); }
   .card-desc {
     font-size: 13px;
     color: var(--fg-muted);
@@ -241,9 +227,12 @@
     padding: 2px 7px;
     border-radius: 3px;
   }
-  .tag.lang { background: rgba(34,211,238,.1); color: var(--accent-2); }
-  .tag.tool { background: rgba(168,85,247,.1); color: #c084fc; }
-  .tag.concept { background: rgba(251,146,60,.1); color: #fb923c; }
+  .tag.lang   { background: rgba(34,211,238,.1);  color: var(--accent-2); }
+  .tag.tool   { background: rgba(168,85,247,.1);  color: #c084fc; }
+  .tag.concept{ background: rgba(251,146,60,.1);  color: #fb923c; }
+  .tag.data   { background: rgba(56,189,248,.1);  color: #38bdf8; }
+  .tag.ai     { background: rgba(232,121,249,.1); color: #e879f9; }
+  .tag.cloud  { background: rgba(251,191,36,.1);  color: #fbbf24; }
   .arrow {
     font-family: 'JetBrains Mono', monospace;
     font-size: 12px;
@@ -252,7 +241,6 @@
   }
   .card:hover .arrow { color: var(--accent); transform: translateX(3px); }
 
-  /* ─── Pinned ─── */
   .pinned {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
@@ -283,7 +271,6 @@
   }
   .card-pin .card-title { font-size: 15px; }
 
-  /* ─── No-results ─── */
   .no-results {
     display: none;
     font-family: 'JetBrains Mono', monospace;
@@ -292,7 +279,6 @@
     padding: 32px 0;
   }
 
-  /* ─── Footer ─── */
   footer {
     border-top: 1px solid var(--border);
     padding-block: 28px;
@@ -316,7 +302,7 @@
   <div class="hero">
     <p class="hero-eyebrow">// learning hub</p>
     <h1>Resources that<br><em>actually help.</em></h1>
-    <p class="hero-sub">A curated collection of docs, tools, and references — skewed toward testing and automation.</p>
+    <p class="hero-sub">Curated docs, tools, and references — skewed toward data engineering, data testing, and AI.</p>
   </div>
 
   <div class="search-wrap">
@@ -324,152 +310,231 @@
     <input class="search-input" id="search" type="search" placeholder="Filter resources…" autocomplete="off" spellcheck="false">
   </div>
 
+  <!-- Pinned -->
   <div class="section">
     <div class="section-head"><h2>Pinned</h2><span class="count">// always relevant</span></div>
     <div class="pinned" id="pinned">
-      <a class="card-pin" href="https://playwright.dev/docs/intro" target="_blank" rel="noopener" data-search="playwright testing automation">
+      <a class="card-pin" href="https://docs.greatexpectations.io/docs/" target="_blank" rel="noopener" data-search="great expectations data quality testing validation">
         <span class="pin-label">★ pinned</span>
-        <span class="card-title">Playwright Docs</span>
-        <span class="card-desc">End-to-end testing for the web. The best-maintained browser automation API right now.</span>
+        <span class="card-title">Great Expectations Docs</span>
+        <span class="card-desc">The standard for data quality testing. Expectations, suites, checkpoints, and data docs.</span>
       </a>
-      <a class="card-pin" href="https://docs.python.org/3/" target="_blank" rel="noopener" data-search="python docs language">
+      <a class="card-pin" href="https://docs.getdbt.com/docs/introduction" target="_blank" rel="noopener" data-search="dbt data build tool sql transformation testing">
+        <span class="pin-label">★ pinned</span>
+        <span class="card-title">dbt Docs</span>
+        <span class="card-desc">SQL-first transformation framework. The testing model (schema tests, custom tests) is excellent.</span>
+      </a>
+      <a class="card-pin" href="https://docs.python.org/3/" target="_blank" rel="noopener" data-search="python docs language standard library">
         <span class="pin-label">★ pinned</span>
         <span class="card-title">Python 3 Docs</span>
         <span class="card-desc">The full standard library reference. Faster than searching — know where to look.</span>
       </a>
-      <a class="card-pin" href="https://www.typescriptlang.org/docs/" target="_blank" rel="noopener" data-search="typescript docs language">
-        <span class="pin-label">★ pinned</span>
-        <span class="card-title">TypeScript Handbook</span>
-        <span class="card-desc">Start with Everyday Types, then reach for the Handbook chapters as needed.</span>
+    </div>
+  </div>
+
+  <!-- Data Testing & Quality -->
+  <div class="section" id="section-datatesting">
+    <div class="section-head"><h2>Data Testing & Quality</h2><span class="count" id="count-datatesting"></span></div>
+    <div class="grid" id="grid-datatesting">
+      <a class="card" href="https://docs.greatexpectations.io/docs/" target="_blank" rel="noopener" data-search="great expectations data quality validation testing suite">
+        <span class="card-title">Great Expectations</span>
+        <span class="card-desc">Define, validate, and document expectations about your data. Integrates with Airflow, Spark, and SQL.</span>
+        <div class="card-footer"><span class="tag data">data quality</span><span class="arrow">→</span></div>
+      </a>
+      <a class="card" href="https://docs.getdbt.com/docs/build/data-tests" target="_blank" rel="noopener" data-search="dbt tests data testing schema generic singular">
+        <span class="card-title">dbt Data Tests</span>
+        <span class="card-desc">Schema tests (unique, not_null, accepted_values) and custom singular tests. The fastest way to test SQL pipelines.</span>
+        <div class="card-footer"><span class="tag data">dbt</span><span class="arrow">→</span></div>
+      </a>
+      <a class="card" href="https://github.com/awslabs/deequ" target="_blank" rel="noopener" data-search="deequ aws data quality spark pydeequ">
+        <span class="card-title">PyDeequ</span>
+        <span class="card-desc">AWS open-source library for unit tests on large datasets via Spark. Originated at Amazon.</span>
+        <div class="card-footer"><span class="tag data">data quality</span><span class="arrow">→</span></div>
+      </a>
+      <a class="card" href="https://docs.soda.io/soda-core/overview-main.html" target="_blank" rel="noopener" data-search="soda core data quality checks sql python">
+        <span class="card-title">Soda Core</span>
+        <span class="card-desc">YAML-defined data quality checks run against SQL sources. Clean alternative to GE for simpler pipelines.</span>
+        <div class="card-footer"><span class="tag data">data quality</span><span class="arrow">→</span></div>
+      </a>
+      <a class="card" href="https://re-data.github.io/re-data/docs/introduction/whatis_redata" target="_blank" rel="noopener" data-search="re-data dbt anomaly detection data monitoring">
+        <span class="card-title">re_data</span>
+        <span class="card-desc">dbt-native anomaly detection and monitoring. Tracks schema changes, volume drops, and metric drift.</span>
+        <div class="card-footer"><span class="tag data">monitoring</span><span class="arrow">→</span></div>
+      </a>
+      <a class="card" href="https://mode.com/sql-tutorial/introduction-to-sql/" target="_blank" rel="noopener" data-search="sql tutorial mode analytics advanced window functions">
+        <span class="card-title">Mode SQL Tutorial</span>
+        <span class="card-desc">Solid intermediate-to-advanced SQL reference: window functions, subqueries, performance tuning.</span>
+        <div class="card-footer"><span class="tag lang">sql</span><span class="arrow">→</span></div>
       </a>
     </div>
   </div>
 
+  <!-- Data Engineering -->
+  <div class="section" id="section-dataeng">
+    <div class="section-head"><h2>Data Engineering</h2><span class="count" id="count-dataeng"></span></div>
+    <div class="grid" id="grid-dataeng">
+      <a class="card" href="https://airflow.apache.org/docs/apache-airflow/stable/" target="_blank" rel="noopener" data-search="airflow apache orchestration dag pipeline workflow">
+        <span class="card-title">Apache Airflow</span>
+        <span class="card-desc">DAG-based pipeline orchestration. TaskFlow API, sensors, operators, XComs, and connections.</span>
+        <div class="card-footer"><span class="tag data">orchestration</span><span class="arrow">→</span></div>
+      </a>
+      <a class="card" href="https://spark.apache.org/docs/latest/api/python/" target="_blank" rel="noopener" data-search="pyspark apache spark python dataframe distributed">
+        <span class="card-title">PySpark API Docs</span>
+        <span class="card-desc">DataFrame and SQL API reference for distributed processing. Column functions and Window are the most-visited pages.</span>
+        <div class="card-footer"><span class="tag data">spark</span><span class="arrow">→</span></div>
+      </a>
+      <a class="card" href="https://docs.aws.amazon.com/glue/latest/dg/what-is-glue.html" target="_blank" rel="noopener" data-search="aws glue etl data catalog serverless spark">
+        <span class="card-title">AWS Glue</span>
+        <span class="card-desc">Serverless ETL on Spark. Data Catalog, Crawlers, DynamicFrames, and job bookmarks.</span>
+        <div class="card-footer"><span class="tag cloud">aws</span><span class="arrow">→</span></div>
+      </a>
+      <a class="card" href="https://docs.aws.amazon.com/redshift/latest/dg/welcome.html" target="_blank" rel="noopener" data-search="aws redshift sql warehouse column store query">
+        <span class="card-title">Amazon Redshift</span>
+        <span class="card-desc">Developer guide covering distribution styles, sort keys, COPY/UNLOAD, and query tuning.</span>
+        <div class="card-footer"><span class="tag cloud">aws</span><span class="arrow">→</span></div>
+      </a>
+      <a class="card" href="https://boto3.amazonaws.com/v1/documentation/api/latest/index.html" target="_blank" rel="noopener" data-search="boto3 aws python sdk s3 glue lambda">
+        <span class="card-title">boto3 Docs</span>
+        <span class="card-desc">AWS SDK for Python. S3, Glue, Redshift Data API, SQS — the reference you reach for daily.</span>
+        <div class="card-footer"><span class="tag cloud">aws</span><span class="arrow">→</span></div>
+      </a>
+      <a class="card" href="https://pandas.pydata.org/docs/user_guide/index.html" target="_blank" rel="noopener" data-search="pandas python dataframe data manipulation csv">
+        <span class="card-title">pandas User Guide</span>
+        <span class="card-desc">The indexing, groupby, and merge chapters are worth a deep read — most bugs live there.</span>
+        <div class="card-footer"><span class="tag lang">python</span><span class="arrow">→</span></div>
+      </a>
+    </div>
+  </div>
+
+  <!-- AI Testing -->
+  <div class="section" id="section-aitesting">
+    <div class="section-head"><h2>AI Testing</h2><span class="count" id="count-aitesting"></span></div>
+    <div class="grid" id="grid-aitesting">
+      <a class="card" href="https://docs.confident-ai.com" target="_blank" rel="noopener" data-search="deepeval llm evaluation testing metrics rag">
+        <span class="card-title">DeepEval</span>
+        <span class="card-desc">pytest-native LLM evaluation framework. Metrics for RAG (faithfulness, contextual recall), hallucination, and toxicity.</span>
+        <div class="card-footer"><span class="tag ai">llm eval</span><span class="arrow">→</span></div>
+      </a>
+      <a class="card" href="https://docs.ragas.io/en/latest/" target="_blank" rel="noopener" data-search="ragas rag evaluation faithfulness recall llm">
+        <span class="card-title">RAGAS</span>
+        <span class="card-desc">RAG-specific evaluation: faithfulness, answer relevance, context precision, and context recall. Integrates with LangChain.</span>
+        <div class="card-footer"><span class="tag ai">rag eval</span><span class="arrow">→</span></div>
+      </a>
+      <a class="card" href="https://evidentlyai.com/docs" target="_blank" rel="noopener" data-search="evidently ai ml model monitoring data drift feature drift">
+        <span class="card-title">Evidently AI</span>
+        <span class="card-desc">ML model and data monitoring. Data drift, target drift, and data quality reports — works in CI and notebooks.</span>
+        <div class="card-footer"><span class="tag ai">ml monitoring</span><span class="arrow">→</span></div>
+      </a>
+      <a class="card" href="https://docs.anthropic.com/en/docs/test-and-evaluate/eval-overview" target="_blank" rel="noopener" data-search="anthropic claude eval evaluation llm testing">
+        <span class="card-title">Anthropic Evals Guide</span>
+        <span class="card-desc">How to design and run evals for Claude-based systems. Covers LLM-as-judge, human annotation, and automated pipelines.</span>
+        <div class="card-footer"><span class="tag ai">llm eval</span><span class="arrow">→</span></div>
+      </a>
+      <a class="card" href="https://mlflow.org/docs/latest/index.html" target="_blank" rel="noopener" data-search="mlflow ml experiment tracking model registry deployment">
+        <span class="card-title">MLflow</span>
+        <span class="card-desc">Experiment tracking, model registry, and deployment. The logging API is where most data test automation hooks in.</span>
+        <div class="card-footer"><span class="tag ai">ml ops</span><span class="arrow">→</span></div>
+      </a>
+      <a class="card" href="https://whylogs.readthedocs.io/en/latest/" target="_blank" rel="noopener" data-search="whylogs data logging profiling ml pipeline monitoring">
+        <span class="card-title">whylogs</span>
+        <span class="card-desc">Lightweight data profiling for ML pipelines. Logs statistical summaries at any scale, integrates with WhyLabs.</span>
+        <div class="card-footer"><span class="tag ai">ml monitoring</span><span class="arrow">→</span></div>
+      </a>
+    </div>
+  </div>
+
+  <!-- Testing & QA -->
   <div class="section" id="section-testing">
     <div class="section-head"><h2>Testing & QA</h2><span class="count" id="count-testing"></span></div>
     <div class="grid" id="grid-testing">
-      <a class="card" href="https://playwright.dev" target="_blank" rel="noopener" data-search="playwright browser automation testing">
-        <span class="card-title">Playwright</span>
-        <span class="card-desc">Cross-browser automation by Microsoft. First-class Python and TS APIs.</span>
-        <div class="card-footer"><span class="tag">automation</span><span class="arrow">→</span></div>
-      </a>
-      <a class="card" href="https://pytest.org" target="_blank" rel="noopener" data-search="pytest python testing framework">
+      <a class="card" href="https://pytest.org" target="_blank" rel="noopener" data-search="pytest python testing framework fixtures">
         <span class="card-title">pytest</span>
         <span class="card-desc">Python's de-facto test framework. Rich plugin ecosystem, clean fixtures model.</span>
         <div class="card-footer"><span class="tag">testing</span><span class="arrow">→</span></div>
       </a>
-      <a class="card" href="https://jestjs.io/docs/getting-started" target="_blank" rel="noopener" data-search="jest javascript testing unit">
-        <span class="card-title">Jest</span>
-        <span class="card-desc">Zero-config JS testing. Snapshot testing, mocking, and code coverage built in.</span>
-        <div class="card-footer"><span class="tag">testing</span><span class="arrow">→</span></div>
-      </a>
-      <a class="card" href="https://vitest.dev" target="_blank" rel="noopener" data-search="vitest vite javascript testing unit fast">
-        <span class="card-title">Vitest</span>
-        <span class="card-desc">Vite-native unit testing. Jest-compatible API, much faster cold starts.</span>
-        <div class="card-footer"><span class="tag">testing</span><span class="arrow">→</span></div>
-      </a>
-      <a class="card" href="https://docs.pytest.org/en/stable/how-to/fixtures.html" target="_blank" rel="noopener" data-search="pytest fixtures dependency injection testing">
+      <a class="card" href="https://docs.pytest.org/en/stable/how-to/fixtures.html" target="_blank" rel="noopener" data-search="pytest fixtures dependency injection scope teardown">
         <span class="card-title">pytest Fixtures</span>
-        <span class="card-desc">The fixture model is pytest's superpower. Scope, teardown, parametrize patterns.</span>
-        <div class="card-footer"><span class="tag">concept</span><span class="arrow">→</span></div>
+        <span class="card-desc">The fixture model is pytest's superpower. Scope, teardown, parametrize — all the patterns that matter.</span>
+        <div class="card-footer"><span class="tag concept">concept</span><span class="arrow">→</span></div>
       </a>
-      <a class="card" href="https://testing.googleblog.com" target="_blank" rel="noopener" data-search="google testing blog engineering quality">
+      <a class="card" href="https://playwright.dev/python/docs/intro" target="_blank" rel="noopener" data-search="playwright python browser automation e2e testing">
+        <span class="card-title">Playwright (Python)</span>
+        <span class="card-desc">The Python API for Playwright. Sync and async modes, page fixtures, network interception.</span>
+        <div class="card-footer"><span class="tag">automation</span><span class="arrow">→</span></div>
+      </a>
+      <a class="card" href="https://testing.googleblog.com" target="_blank" rel="noopener" data-search="google testing blog engineering quality strategy">
         <span class="card-title">Google Testing Blog</span>
-        <span class="card-desc">Long-running engineering blog on testing philosophy, flaky tests, CI, and test design.</span>
-        <div class="card-footer"><span class="tag">concept</span><span class="arrow">→</span></div>
+        <span class="card-desc">Engineering blog on testing philosophy, flaky tests, CI, and test design at scale.</span>
+        <div class="card-footer"><span class="tag concept">concept</span><span class="arrow">→</span></div>
       </a>
-    </div>
-  </div>
-
-  <div class="section" id="section-languages">
-    <div class="section-head"><h2>Languages</h2><span class="count" id="count-languages"></span></div>
-    <div class="grid" id="grid-languages">
-      <a class="card" href="https://docs.python.org/3/" target="_blank" rel="noopener" data-search="python docs reference standard library">
-        <span class="card-title">Python Docs</span>
-        <span class="card-desc">Standard library reference. Bookmark the Built-in Functions and itertools pages.</span>
-        <div class="card-footer"><span class="tag lang">python</span><span class="arrow">→</span></div>
-      </a>
-      <a class="card" href="https://www.typescriptlang.org/docs/handbook/2/types-from-types.html" target="_blank" rel="noopener" data-search="typescript advanced types generics utility">
-        <span class="card-title">TS — Types from Types</span>
-        <span class="card-desc">Mapped types, conditionals, infer — the patterns that make complex type-level code readable.</span>
-        <div class="card-footer"><span class="tag lang">typescript</span><span class="arrow">→</span></div>
-      </a>
-      <a class="card" href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference" target="_blank" rel="noopener" data-search="javascript mdn reference web apis">
-        <span class="card-title">MDN JS Reference</span>
-        <span class="card-desc">Authoritative JS spec reference plus browser API coverage. Bookmark this over W3Schools.</span>
-        <div class="card-footer"><span class="tag lang">javascript</span><span class="arrow">→</span></div>
-      </a>
-      <a class="card" href="https://dev.java/learn/" target="_blank" rel="noopener" data-search="java learn docs official">
-        <span class="card-title">dev.java</span>
-        <span class="card-desc">Oracle's modern Java learning hub. Better organized than the legacy Javadoc sites.</span>
-        <div class="card-footer"><span class="tag lang">java</span><span class="arrow">→</span></div>
-      </a>
-      <a class="card" href="https://realpython.com" target="_blank" rel="noopener" data-search="python tutorials real practical">
-        <span class="card-title">Real Python</span>
-        <span class="card-desc">Deep practical tutorials. Especially good for testing, async, and data tooling.</span>
-        <div class="card-footer"><span class="tag lang">python</span><span class="arrow">→</span></div>
-      </a>
-    </div>
-  </div>
-
-  <div class="section" id="section-devtools">
-    <div class="section-head"><h2>Tools & DevOps</h2><span class="count" id="count-devtools"></span></div>
-    <div class="grid" id="grid-devtools">
-      <a class="card" href="https://git-scm.com/docs" target="_blank" rel="noopener" data-search="git version control docs reference">
-        <span class="card-title">Git Reference</span>
-        <span class="card-desc">Official command reference. Every option, every flag. Faster than Stack Overflow for git edge cases.</span>
-        <div class="card-footer"><span class="tag tool">tool</span><span class="arrow">→</span></div>
-      </a>
-      <a class="card" href="https://docs.docker.com/get-started/" target="_blank" rel="noopener" data-search="docker containers devops images">
-        <span class="card-title">Docker Docs</span>
-        <span class="card-desc">Get Started covers most real workflows. Compose reference is the most-visited page.</span>
-        <div class="card-footer"><span class="tag tool">tool</span><span class="arrow">→</span></div>
-      </a>
-      <a class="card" href="https://docs.github.com/en/actions" target="_blank" rel="noopener" data-search="github actions ci cd workflow automation">
-        <span class="card-title">GitHub Actions</span>
-        <span class="card-desc">CI/CD that lives in the repo. Workflow syntax, matrix builds, reusable workflows.</span>
-        <div class="card-footer"><span class="tag tool">tool</span><span class="arrow">→</span></div>
-      </a>
-      <a class="card" href="https://jqlang.github.io/jq/manual/" target="_blank" rel="noopener" data-search="jq json cli parsing tool">
-        <span class="card-title">jq Manual</span>
-        <span class="card-desc">Command-line JSON processor. Indispensable for API responses and log parsing in shell scripts.</span>
-        <div class="card-footer"><span class="tag tool">tool</span><span class="arrow">→</span></div>
-      </a>
-      <a class="card" href="https://explainshell.com" target="_blank" rel="noopener" data-search="shell bash explain command flags linux">
-        <span class="card-title">explainshell</span>
-        <span class="card-desc">Paste any shell command and get each flag annotated from the man page. Great for decoding scripts.</span>
-        <div class="card-footer"><span class="tag tool">tool</span><span class="arrow">→</span></div>
-      </a>
-      <a class="card" href="https://www.postman.com/api-platform/api-testing/" target="_blank" rel="noopener" data-search="postman api testing rest http">
-        <span class="card-title">Postman API Testing</span>
-        <span class="card-desc">Collections, environments, and test scripting. Newman for headless CI runs.</span>
-        <div class="card-footer"><span class="tag tool">tool</span><span class="arrow">→</span></div>
-      </a>
-    </div>
-  </div>
-
-  <div class="section" id="section-concepts">
-    <div class="section-head"><h2>Concepts</h2><span class="count" id="count-concepts"></span></div>
-    <div class="grid" id="grid-concepts">
-      <a class="card" href="https://martinfowler.com/articles/practical-test-pyramid.html" target="_blank" rel="noopener" data-search="test pyramid strategy unit integration e2e">
+      <a class="card" href="https://martinfowler.com/articles/practical-test-pyramid.html" target="_blank" rel="noopener" data-search="test pyramid unit integration e2e strategy fowler">
         <span class="card-title">Practical Test Pyramid</span>
         <span class="card-desc">Fowler's breakdown of unit/integration/E2E trade-offs. The article that frames every testing conversation.</span>
         <div class="card-footer"><span class="tag concept">concept</span><span class="arrow">→</span></div>
       </a>
-      <a class="card" href="https://12factor.net" target="_blank" rel="noopener" data-search="twelve factor app methodology config deployment">
-        <span class="card-title">The Twelve-Factor App</span>
-        <span class="card-desc">Methodology for building deployable, testable services. Good mental model for why certain antipatterns exist.</span>
-        <div class="card-footer"><span class="tag concept">concept</span><span class="arrow">→</span></div>
+    </div>
+  </div>
+
+  <!-- Languages -->
+  <div class="section" id="section-languages">
+    <div class="section-head"><h2>Languages</h2><span class="count" id="count-languages"></span></div>
+    <div class="grid" id="grid-languages">
+      <a class="card" href="https://docs.python.org/3/" target="_blank" rel="noopener" data-search="python docs reference standard library builtins">
+        <span class="card-title">Python Docs</span>
+        <span class="card-desc">Standard library reference. Bookmark Built-in Functions, itertools, and functools.</span>
+        <div class="card-footer"><span class="tag lang">python</span><span class="arrow">→</span></div>
       </a>
-      <a class="card" href="https://owasp.org/www-project-top-ten/" target="_blank" rel="noopener" data-search="owasp security top ten web vulnerabilities">
-        <span class="card-title">OWASP Top 10</span>
-        <span class="card-desc">The canonical list of critical web security risks. Useful context for security test case thinking.</span>
-        <div class="card-footer"><span class="tag concept">concept</span><span class="arrow">→</span></div>
+      <a class="card" href="https://realpython.com" target="_blank" rel="noopener" data-search="python tutorials real practical deep testing async">
+        <span class="card-title">Real Python</span>
+        <span class="card-desc">Deep practical tutorials. Especially good on testing, async, decorators, and data tooling.</span>
+        <div class="card-footer"><span class="tag lang">python</span><span class="arrow">→</span></div>
       </a>
-      <a class="card" href="https://semver.org" target="_blank" rel="noopener" data-search="semver semantic versioning releases">
-        <span class="card-title">Semantic Versioning</span>
-        <span class="card-desc">The spec behind MAJOR.MINOR.PATCH. Useful for understanding dependency risk when reviewing changelogs.</span>
-        <div class="card-footer"><span class="tag concept">concept</span><span class="arrow">→</span></div>
+      <a class="card" href="https://mode.com/sql-tutorial/introduction-to-sql/" target="_blank" rel="noopener" data-search="sql tutorial window functions subqueries analytics">
+        <span class="card-title">Mode SQL Tutorial</span>
+        <span class="card-desc">Intermediate-to-advanced SQL: window functions, CTEs, subqueries, and performance patterns.</span>
+        <div class="card-footer"><span class="tag lang">sql</span><span class="arrow">→</span></div>
+      </a>
+      <a class="card" href="https://use-the-index-luke.com" target="_blank" rel="noopener" data-search="sql index performance query tuning database">
+        <span class="card-title">Use The Index, Luke</span>
+        <span class="card-desc">SQL performance for developers — how indexes actually work, execution plans, and slow query diagnosis.</span>
+        <div class="card-footer"><span class="tag lang">sql</span><span class="arrow">→</span></div>
+      </a>
+    </div>
+  </div>
+
+  <!-- Tools & Infrastructure -->
+  <div class="section" id="section-devtools">
+    <div class="section-head"><h2>Tools & Infrastructure</h2><span class="count" id="count-devtools"></span></div>
+    <div class="grid" id="grid-devtools">
+      <a class="card" href="https://docs.docker.com/get-started/" target="_blank" rel="noopener" data-search="docker containers images compose devops">
+        <span class="card-title">Docker Docs</span>
+        <span class="card-desc">Get Started covers most real workflows. Compose reference is the most-visited page.</span>
+        <div class="card-footer"><span class="tag tool">tool</span><span class="arrow">→</span></div>
+      </a>
+      <a class="card" href="https://kubernetes.io/docs/home/" target="_blank" rel="noopener" data-search="kubernetes k8s pods deployments services ingress">
+        <span class="card-title">Kubernetes Docs</span>
+        <span class="card-desc">Concepts + Tasks are the useful sections. Workloads, Services, and ConfigMaps cover 80% of day-to-day use.</span>
+        <div class="card-footer"><span class="tag tool">tool</span><span class="arrow">→</span></div>
+      </a>
+      <a class="card" href="https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-welcome.html" target="_blank" rel="noopener" data-search="aws cli command line tool s3 ec2 glue">
+        <span class="card-title">AWS CLI Docs</span>
+        <span class="card-desc">Command reference for every AWS service. The <code style="font-family:monospace;font-size:12px">--query</code> flag + JMESPath is worth learning properly.</span>
+        <div class="card-footer"><span class="tag cloud">aws</span><span class="arrow">→</span></div>
+      </a>
+      <a class="card" href="https://docs.github.com/en/actions" target="_blank" rel="noopener" data-search="github actions ci cd workflow automation matrix">
+        <span class="card-title">GitHub Actions</span>
+        <span class="card-desc">CI/CD that lives in the repo. Workflow syntax, matrix builds, reusable workflows.</span>
+        <div class="card-footer"><span class="tag tool">tool</span><span class="arrow">→</span></div>
+      </a>
+      <a class="card" href="https://jqlang.github.io/jq/manual/" target="_blank" rel="noopener" data-search="jq json cli parsing tool shell">
+        <span class="card-title">jq Manual</span>
+        <span class="card-desc">Command-line JSON processor. Indispensable for API responses and log parsing in shell scripts.</span>
+        <div class="card-footer"><span class="tag tool">tool</span><span class="arrow">→</span></div>
+      </a>
+      <a class="card" href="https://explainshell.com" target="_blank" rel="noopener" data-search="shell bash explain command flags linux man page">
+        <span class="card-title">explainshell</span>
+        <span class="card-desc">Paste any shell command and get each flag annotated from the man page. Great for decoding scripts.</span>
+        <div class="card-footer"><span class="tag tool">tool</span><span class="arrow">→</span></div>
       </a>
     </div>
   </div>
@@ -483,7 +548,6 @@
 </footer>
 
 <script>
-  // ─── Theme toggle ───
   function toggleTheme() {
     const root = document.documentElement;
     const current = root.getAttribute('data-theme');
@@ -500,8 +564,7 @@
     if (saved) document.documentElement.setAttribute('data-theme', saved);
   } catch {}
 
-  // ─── Counts ───
-  const sections = ['testing', 'languages', 'devtools', 'concepts'];
+  const sections = ['datatesting','dataeng','aitesting','testing','languages','devtools'];
   sections.forEach(id => {
     const grid = document.getElementById('grid-' + id);
     if (grid) {
@@ -511,23 +574,19 @@
     }
   });
 
-  // total
   const total = document.querySelectorAll('.card, .card-pin').length;
   const fc = document.getElementById('footer-count');
   if (fc) fc.textContent = total + ' resources';
 
-  // ─── Search ───
   const searchInput = document.getElementById('search');
   const noResults = document.getElementById('no-results');
 
   searchInput.addEventListener('input', () => {
     const q = searchInput.value.trim().toLowerCase();
-
     document.querySelectorAll('.card, .card-pin').forEach(card => {
       const text = (card.dataset.search || '') + ' ' + card.textContent;
       card.style.display = !q || text.toLowerCase().includes(q) ? '' : 'none';
     });
-
     let anyVisible = false;
     document.querySelectorAll('.section, #pinned').forEach(section => {
       const cards = section.querySelectorAll('.card, .card-pin');
@@ -535,7 +594,6 @@
       section.style.display = q && !visible ? 'none' : '';
       if (visible || !q) anyVisible = true;
     });
-
     noResults.style.display = (!anyVisible && q) ? 'block' : 'none';
   });
 </script>
